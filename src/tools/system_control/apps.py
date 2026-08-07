@@ -38,6 +38,10 @@ class AppController:
                 subprocess.run(["wmctrl", "-a", app_name.capitalize()], capture_output=True)
                 subprocess.run(["wmctrl", "-a", app_name], capture_output=True)
                 subprocess.run(["wmctrl", "-a", target], capture_output=True)
+                
+                import os
+                if os.environ.get("XDG_SESSION_TYPE", "") == "wayland":
+                    return f"{app_name.capitalize()} is already running. Wayland security restricts forcing it to the front."
                 return f"{app_name.capitalize()} is already running. Brought to foreground."
                 
             # We use Popen with a fully qualified list to detach the process
