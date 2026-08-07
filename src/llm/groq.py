@@ -18,19 +18,23 @@ class GroqLLM:
         else:
             self.client = Groq(api_key=api_key)
 
-    def generate(self, prompt: str, system_prompt: str = "You are ECHELON, a helpful AI assistant.") -> str:
+    def generate(self, prompt: str, system_prompt: str = "You are ECHELON, a helpful AI assistant.", history: list[dict] = None) -> str:
         """Generate text using Groq's API."""
         if not self.client:
             return "Error: Groq API key is not configured."
+            
+        messages = [{"role": "system", "content": system_prompt}]
+        if history:
+            for turn in history:
+                messages.append({"role": "user", "content": turn["user"]})
+                messages.append({"role": "assistant", "content": turn["echelon"]})
+        messages.append({"role": "user", "content": prompt})
             
         try:
             log.debug(f"Calling Groq model {self.model}...")
             completion = self.client.chat.completions.create(
                 model=self.model,
-                messages=[
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": prompt}
-                ],
+                messages=messages,
                 temperature=self.temperature,
                 max_tokens=150,  # Keep TTS responses short
             )

@@ -32,6 +32,8 @@ from src.llm.groq import GroqLLM
 from src.agent.router import IntentRouter
 from src.tools.file_ops.handler import FileOpsHandler
 from src.tools.system_control.handler import SystemControlHandler
+from src.memory.buffer import ConversationBuffer
+from src.tools.rag_query.handler import RAGHandler
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logging.getLogger("phonemizer").setLevel(logging.ERROR)
@@ -93,6 +95,8 @@ def run_echelon():
         
     file_handler = FileOpsHandler(ask_callback=ask_callback)
     system_handler = SystemControlHandler()
+    rag_handler = RAGHandler()
+    memory_buffer = ConversationBuffer()
     
     try:
         while True:
@@ -144,18 +148,28 @@ def run_echelon():
             print(f"Intent classified as: {route}")
             
             # Synthesize Response
+            context = memory_buffer.get_context_string(turns=2)
+            
             if route == "general_chat":
-                response = llm.generate(text, "Keep answers brief and conversational.")
+                response = llm.generate(text, "Keep answers brief and conversational.", memory_buffer.get_full_history())
             elif route == "file_ops":
                 print("Executing FileOps Handler...")
-                response = file_handler.handle(text)
+                response = file_handler.handle(text, context)
             elif route == "system_control":
                 print("Executing SystemControl Handler...")
-                response = system_handler.handle(text)
+                response = system_handler.handle(text, context)
+            elif route == "rag_query":
+                print("Executing RAG Query Handler...")
+                response = rag_handler.handle(text, context)
+            elif route == "memory_recall":
+                print("Executing Memory Recall...")
+                sys_prompt = "You are ECHELON. The user is asking about something you discussed recently. Use the conversation history to answer concisely."
+                response = llm.generate(text, sys_prompt, memory_buffer.get_full_history())
             else:
                 response = f"Routing to {route.replace('_', ' ')}. Tool execution is coming in the next phase."
                 
             print(f"ECHELON: {response}")
+            memory_buffer.add_turn(text, response)
             
             # TTS
             waveform = tts.synthesize(response)

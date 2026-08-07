@@ -27,6 +27,9 @@ Examples:
 "Open firefox" -> {{"action": "launch_app", "target": "firefox", "value": 0}}
 "Run the backup script" -> {{"action": "run_script", "target": "backup", "value": 0}}
 
+Recent Conversation Context (for resolving references):
+{context}
+
 User Command: "{query}"
 
 Respond ONLY with the JSON object."""
@@ -39,11 +42,11 @@ Respond ONLY with the JSON object."""
         self.model = "qwen2.5:3b-instruct-q4_K_M"
         self.ollama_url = "http://localhost:11434/api/generate"
 
-    def handle(self, command: str) -> str:
+    def handle(self, command: str, context: str = "") -> str:
         """Parses the command and executes the proper system operation."""
         payload = {
             "model": self.model,
-            "prompt": self.PARAM_PROMPT.format(query=command),
+            "prompt": self.PARAM_PROMPT.format(query=command, context=context),
             "stream": False,
             "format": "json",
             "options": {"temperature": 0.0}
