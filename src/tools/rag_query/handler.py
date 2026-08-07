@@ -11,7 +11,7 @@ log = logging.getLogger(__name__)
 class RAGHandler:
     """Handles semantic search over local documents using Qdrant and SentenceTransformers."""
     
-    def __init__(self, collection_name="echelon_docs", db_path="qdrant_data"):
+    def __init__(self, collection_name="echelon_docs", db_path="qdrant_local_db"):
         self.collection_name = collection_name
         self.db_path = os.path.abspath(db_path)
         self.llm = GroqLLM()
