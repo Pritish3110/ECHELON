@@ -16,6 +16,8 @@ class FileOpsHandler:
     
     PARAM_PROMPT = """You are a parameter extractor for a local file operations tool. 
 Analyze the user's command and extract the necessary arguments.
+IMPORTANT: If the user says 'underscore', 'dash', or 'dot' in a filename, convert them to '_', '-', and '.' respectively (e.g., 'project underscore architecture dot md' -> 'project_architecture.md').
+
 Return a valid JSON object matching this schema:
 {{
   "action": "read" | "write" | "move" | "copy" | "find" | "organize",

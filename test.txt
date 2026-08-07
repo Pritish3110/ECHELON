@@ -1,0 +1,109 @@
+hello echelon
+
+the above was written by echelon.
+
+this is the log of the main.py file while testing the complete pipeline.
+
+((venv) ) Pritish_3110:~/Personal Files/Syllabus/Projects/ECHELON$ python src/main.py
+2026-08-08 02:18:36,720 - __main__ - INFO - Initializing ECHELON models...
+2026-08-08 02:18:36,771 - src.voice.asr - INFO - Loading Faster-Whisper small (int8)...
+2026-08-08 02:18:37,605 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+2026-08-08 02:18:38,841 - src.voice.tts - INFO - Loading Kokoro-82M TTS (lang=a, voice=af_heart)...
+WARNING: Defaulting repo_id to hexgrad/Kokoro-82M. Pass repo_id='hexgrad/Kokoro-82M' to suppress this warning.
+2026-08-08 02:18:39,235 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/hexgrad/Kokoro-82M/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-08-08 02:18:39,395 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/hexgrad/Kokoro-82M/f3ff3571791e39611d31c381e3a41a3af07b4987/config.json "HTTP/1.1 200 OK"
+/home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/venv/lib/python3.12/site-packages/torch/nn/modules/rnn.py:1011: UserWarning: dropout option adds dropout after all but last recurrent layer, so non-zero dropout expects num_layers greater than 1, but got dropout=0.2 and num_layers=1
+  super().__init__("LSTM", *args, **kwargs)
+/home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/venv/lib/python3.12/site-packages/torch/nn/utils/weight_norm.py:144: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+2026-08-08 02:18:40,517 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/hexgrad/Kokoro-82M/resolve/main/kokoro-v1_0.pth "HTTP/1.1 302 Found"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-08-08 02:18:40,517 - huggingface_hub.utils._http - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-08-08 02:18:41,973 - __main__ - INFO - Models loaded. System ready.
+
+========================================
+Waiting for speech... (Ctrl+C to exit)
+Listening...
+Processing speech...
+2026-08-08 02:18:44,311 - faster_whisper - INFO - Processing audio with duration 00:00.800
+2026-08-08 02:18:44,627 - faster_whisper - INFO - Detected language 'en' with probability 0.21
+You said: Thank you very much.
+Routing intent...
+Intent classified as: general_chat
+2026-08-08 02:18:49,796 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+ECHELON: You're welcome. Is there something I can help you with?
+2026-08-08 02:18:50,503 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/hexgrad/Kokoro-82M/resolve/main/voices/af_heart.pt "HTTP/1.1 302 Found"
+
+========================================
+Waiting for speech... (Ctrl+C to exit)
+Listening...
+Processing speech...
+2026-08-08 02:18:57,485 - faster_whisper - INFO - Processing audio with duration 00:00.896
+2026-08-08 02:18:57,573 - faster_whisper - INFO - Detected language 'en' with probability 0.97
+You said: Thanks.
+Routing intent...
+Intent classified as: general_chat
+2026-08-08 02:18:59,678 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+ECHELON: You're welcome. Is there something I can help you with?
+
+========================================
+Waiting for speech... (Ctrl+C to exit)
+Listening...
+Processing speech...
+2026-08-08 02:19:05,490 - faster_whisper - INFO - Processing audio with duration 00:01.376
+2026-08-08 02:19:05,560 - faster_whisper - INFO - Detected language 'en' with probability 0.93
+You said: What is your name?
+Routing intent...
+Intent classified as: general_chat
+2026-08-08 02:19:07,685 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+ECHELON: I'm an AI, so I don't have a personal name. I'm here to help answer your questions, though. How can I assist you today?
+
+========================================
+Waiting for speech... (Ctrl+C to exit)
+Listening...
+Processing speech...
+2026-08-08 02:19:20,592 - faster_whisper - INFO - Processing audio with duration 00:04.096
+2026-08-08 02:19:20,680 - faster_whisper - INFO - Detected language 'en' with probability 0.97
+You said: Can you tell me how quantum computing works in simple terms?
+Routing intent...
+Intent classified as: general_chat
+2026-08-08 02:19:21,678 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+ECHELON: Quantum computing is a type of computing that uses the weird behavior of tiny particles to process info. Unlike regular computers that use "bits" (0s and 1s), quantum computers use "qubits" that can be both 0 and 1 at the same time. This lets them try many solutions to a problem simultaneously, making them super fast for certain tasks. Think of it like trying all the combinations on a lock at the same time, instead of trying one by one.
+
+========================================
+Waiting for speech... (Ctrl+C to exit)
+Listening...
+Processing speech...
+2026-08-08 02:20:00,586 - faster_whisper - INFO - Processing audio with duration 00:06.272
+2026-08-08 02:20:00,689 - faster_whisper - INFO - Detected language 'en' with probability 0.98
+You said: Can you read the contents of the project underscore architecture.md file in this repository?
+Routing intent...
+Intent classified as: file_ops
+Executing FileOps Handler...
+ECHELON: Error: The file project underscore architecture.md does not exist.
+
+========================================
+Waiting for speech... (Ctrl+C to exit)
+Listening...
+Processing speech...
+2026-08-08 02:20:25,208 - faster_whisper - INFO - Processing audio with duration 00:08.160
+2026-08-08 02:20:25,315 - faster_whisper - INFO - Detected language 'en' with probability 0.99
+You said: Can you create me a file called test.txt in the downloads folder with the content called hello echelon.
+Routing intent...
+Intent classified as: file_ops
+Executing FileOps Handler...
+2026-08-08 02:20:26,264 - src.tools.file_ops.permissions - INFO - Asking user for permission: Do you want me to create the file at /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/test.txt?
+ECHELON SECURITY: Do you want me to create the file at /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/test.txt?
+2026-08-08 02:20:26,269 - phonemizer - WARNING - words count mismatch on 100.0% of the lines (1/1)
+2026-08-08 02:20:26,270 - phonemizer - WARNING - words count mismatch on 100.0% of the lines (1/1)
+Confirm? (yes/no): yes
+2026-08-08 02:20:59,375 - src.tools.file_ops.permissions - INFO - User approved 'create' on /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/test.txt
+ECHELON: Successfully saved text to test.txt.
+
+========================================
+Waiting for speech... (Ctrl+C to exit)
+^C
+Exiting ECHELON.
+
+there are some errors that we can fix:
+in the first 2 speech i said hi and it heard thanks and such. next when i asked it read the contents it could not find it. and finally what was the phonemizer warning and can the ask permission be allowed through speech? when given the command to create something it should verify again like it did and instead of typing can it verify with voice as well? lets do this debugging for now before moving onto the next phase.

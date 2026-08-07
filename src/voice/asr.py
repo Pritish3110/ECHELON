@@ -20,7 +20,10 @@ class ASR:
         segments, info = self.model.transcribe(
             audio,
             beam_size=1,               # low latency
-            condition_on_previous_text=False # avoid streaming drift
+            condition_on_previous_text=False, # avoid streaming drift
+            initial_prompt="Hello, Echelon. Could you please help me?",
+            no_speech_threshold=0.6,
+            logprob_threshold=-1.0
         )
         
         text = "".join(segment.text for segment in segments)

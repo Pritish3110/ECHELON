@@ -30,6 +30,7 @@ from src.agent.router import IntentRouter
 from src.tools.file_ops.handler import FileOpsHandler
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logging.getLogger("phonemizer").setLevel(logging.ERROR)
 log = logging.getLogger(__name__)
 
 def run_echelon():
@@ -47,15 +48,44 @@ def run_echelon():
     SILENCE_THRESHOLD_FRAMES = 16 # ~500ms at 30ms chunks
     
     def ask_callback(prompt_msg: str) -> bool:
-        """Callback to pause execution and await user confirmation."""
+        """Callback to pause execution and await user confirmation via voice."""
         print(f"ECHELON SECURITY: {prompt_msg}")
-        waveform = tts.synthesize(prompt_msg)
+        clean_prompt = prompt_msg.replace("/", " slash ").replace("_", " underscore ").replace(".", " dot ")
+        waveform = tts.synthesize(clean_prompt)
         if waveform is not None and len(waveform) > 0:
             play_audio(waveform, samplerate=24000)
             
-        # Fallback to CLI for MVP confirmation to ensure reliable test execution
-        ans = input("Confirm? (yes/no): ").strip().lower()
-        return ans in ["yes", "y", "sure", "ok"]
+        print("Listening for confirmation (say 'yes' or 'no')...")
+        capture.start()
+        start_t = time.time()
+        is_spk = False
+        silence = 0
+        buf = []
+        while True:
+            if not is_spk and (time.time() - start_t) > 6.0:
+                break
+            try:
+                ch = capture.get_chunk(timeout=0.1)
+            except queue.Empty:
+                continue
+            if vad.is_speech(ch):
+                if not is_spk: is_spk = True
+                silence = 0
+                buf.append(ch)
+            elif is_spk:
+                silence += 1
+                buf.append(ch)
+                if silence > 16:
+                    break
+        capture.stop()
+        
+        if not buf:
+            print("No confirmation heard. Denying by default.")
+            return False
+            
+        ans = asr.transcribe(np.concatenate(buf, axis=0)).strip().lower()
+        print(f"Heard confirmation: '{ans}'")
+        return any(w in ans for w in ["yes", "yep", "sure", "ok", "yeah", "do it"])
         
     file_handler = FileOpsHandler(ask_callback=ask_callback)
     
