@@ -29,6 +29,11 @@ class AppController:
             return f"Security Refusal: ECHELON is not permitted to launch the unverified application '{app_name}'."
             
         try:
+            # Prevent launching duplicate windows if it's already running (saves VRAM)
+            check = subprocess.run(["pgrep", target], capture_output=True, text=True)
+            if check.stdout.strip():
+                return f"{app_name.capitalize()} is already running."
+                
             # We use Popen with a fully qualified list to detach the process
             # and avoid blocking the Python thread.
             subprocess.Popen([target], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
