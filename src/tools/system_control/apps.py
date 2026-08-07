@@ -33,6 +33,8 @@ class AppController:
             check = subprocess.run(["pgrep", target], capture_output=True, text=True)
             if check.stdout.strip():
                 # Attempt to bring to front if wmctrl is installed
+                subprocess.run(["wmctrl", "-a", target.capitalize()], capture_output=True)
+                subprocess.run(["wmctrl", "-x", "-a", target], capture_output=True)
                 subprocess.run(["wmctrl", "-a", app_name.capitalize()], capture_output=True)
                 subprocess.run(["wmctrl", "-a", app_name], capture_output=True)
                 subprocess.run(["wmctrl", "-a", target], capture_output=True)
