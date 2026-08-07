@@ -32,7 +32,11 @@ class AppController:
             # Prevent launching duplicate windows if it's already running (saves VRAM)
             check = subprocess.run(["pgrep", target], capture_output=True, text=True)
             if check.stdout.strip():
-                return f"{app_name.capitalize()} is already running."
+                # Attempt to bring to front if wmctrl is installed
+                subprocess.run(["wmctrl", "-a", app_name.capitalize()], capture_output=True)
+                subprocess.run(["wmctrl", "-a", app_name], capture_output=True)
+                subprocess.run(["wmctrl", "-a", target], capture_output=True)
+                return f"{app_name.capitalize()} is already running. Brought to foreground."
                 
             # We use Popen with a fully qualified list to detach the process
             # and avoid blocking the Python thread.
@@ -54,11 +58,12 @@ class AppController:
             
         try:
             # We strictly pass the target as an isolated array element to prevent command injection
-            result = subprocess.run(["killall", target], capture_output=True, text=True)
+            # using pkill instead of killall so it correctly matches processes like gnome-terminal-server
+            result = subprocess.run(["pkill", target], capture_output=True, text=True)
             if result.returncode == 0:
                 return f"Closed {app_name}."
             else:
-                # killall returns non-zero if no process was found
+                # pkill returns non-zero if no process was found
                 return f"{app_name} is not currently running."
         except Exception as e:
             log.error(f"Failed to close {app_name}: {e}")

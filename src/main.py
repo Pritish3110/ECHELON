@@ -51,7 +51,7 @@ def run_echelon():
     log.info("Models loaded. System ready.")
     
     capture = AudioCapture()
-    SILENCE_THRESHOLD_FRAMES = 16 # ~500ms at 30ms chunks
+    SILENCE_THRESHOLD_FRAMES = 45 # ~1.35s at 30ms chunks (allows for natural pauses)
     
     def ask_callback(prompt_msg: str) -> bool:
         """Callback to pause execution and await user confirmation via voice."""
@@ -81,7 +81,7 @@ def run_echelon():
             elif is_spk:
                 silence += 1
                 buf.append(ch)
-                if silence > 16:
+                if silence > 45:
                     break
         capture.stop()
         
