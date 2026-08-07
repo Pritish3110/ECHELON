@@ -16,8 +16,8 @@ class RAGHandler:
         self.db_path = os.path.abspath(db_path)
         self.llm = GroqLLM()
         
-        log.info("Loading SentenceTransformer for RAG (all-MiniLM-L6-v2)...")
-        self.embedder = SentenceTransformer("all-MiniLM-L6-v2")
+        log.info("Loading SentenceTransformer for RAG (all-MiniLM-L6-v2) on CPU...")
+        self.embedder = SentenceTransformer("all-MiniLM-L6-v2", device="cpu")
         
         # Local disk deployment (no docker)
         self.client = QdrantClient(path=self.db_path)

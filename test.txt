@@ -1,43 +1,125 @@
+((venv) ) Pritish_3110:~/Personal Files/Syllabus/Projects/ECHELON$ python src/main.py
+2026-08-08 02:59:36,468 - __main__ - INFO - Initializing ECHELON models...
+2026-08-08 02:59:36,522 - src.voice.asr - INFO - Loading Faster-Whisper small (int8)...
+2026-08-08 02:59:37,228 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+2026-08-08 02:59:38,230 - src.voice.tts - INFO - Loading Kokoro-82M TTS (lang=a, voice=af_heart)...
+WARNING: Defaulting repo_id to hexgrad/Kokoro-82M. Pass repo_id='hexgrad/Kokoro-82M' to suppress this warning.
+2026-08-08 02:59:38,571 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/hexgrad/Kokoro-82M/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-08-08 02:59:38,571 - huggingface_hub.utils._http - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-08-08 02:59:38,668 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/hexgrad/Kokoro-82M/f3ff3571791e39611d31c381e3a41a3af07b4987/config.json "HTTP/1.1 200 OK"
+2026-08-08 02:59:39,528 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/hexgrad/Kokoro-82M/resolve/main/kokoro-v1_0.pth "HTTP/1.1 302 Found"
+2026-08-08 02:59:40,716 - __main__ - INFO - Models loaded. System ready.
+2026-08-08 02:59:40,728 - src.tools.rag_query.handler - INFO - Loading SentenceTransformer for RAG (all-MiniLM-L6-v2)...
+2026-08-08 02:59:40,728 - sentence_transformers.base.model - INFO - No device provided, using cuda:0
+2026-08-08 02:59:41,091 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-08-08 02:59:41,210 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json "HTTP/1.1 200 OK"
+2026-08-08 02:59:41,528 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-08-08 02:59:41,649 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-08-08 02:59:41,650 - sentence_transformers.base.model - INFO - Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.
+2026-08-08 02:59:41,926 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-08-08 02:59:42,052 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-08-08 02:59:42,371 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-08-08 02:59:42,648 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md "HTTP/1.1 200 OK"
+2026-08-08 02:59:42,968 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-08-08 02:59:43,088 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json "HTTP/1.1 200 OK"
+2026-08-08 02:59:43,368 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-08-08 02:59:43,489 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-08-08 02:59:43,807 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-08-08 02:59:44,169 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-08-08 02:59:44,393 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json "HTTP/1.1 200 OK"
+Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████| 103/103 [00:00<00:00, 4793.49it/s]
+2026-08-08 02:59:44,858 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-08-08 02:59:45,407 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-08-08 02:59:45,825 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-08-08 02:59:46,165 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-08-08 02:59:46,548 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-08-08 02:59:46,645 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-08-08 02:59:47,031 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-08-08 02:59:47,273 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json "HTTP/1.1 200 OK"
+2026-08-08 02:59:47,567 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-08-08 02:59:47,756 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json "HTTP/1.1 200 OK"
+2026-08-08 02:59:48,047 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-08-08 02:59:48,241 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-08-08 02:59:48,565 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-08-08 02:59:48,888 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-08-08 02:59:49,249 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-08-08 02:59:49,325 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-08-08 02:59:49,648 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+
 ========================================
 Waiting for speech... (Ctrl+C to exit)
 Listening...
 Processing speech...
-2026-08-08 02:40:52,137 - faster_whisper - INFO - Processing audio with duration 00:02.080
-You said: I'm going to turn up the volume to 80%.
+2026-08-08 02:59:54,188 - faster_whisper - INFO - Processing audio with duration 00:01.312
+You said: Hello, Echelon.
+Routing intent...
+Intent classified as: general_chat
+2026-08-08 02:59:58,772 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+ECHELON: Hello. How can I help you today?
+2026-08-08 02:59:59,328 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/hexgrad/Kokoro-82M/resolve/main/voices/af_heart.pt "HTTP/1.1 302 Found"
+
+========================================
+Waiting for speech... (Ctrl+C to exit)
+Listening...
+Processing speech...
+2026-08-08 03:00:10,390 - faster_whisper - INFO - Processing audio with duration 00:02.400
+You said: Turn the volume up to 80%.
 Routing intent...
 Intent classified as: system_control
 Executing SystemControl Handler...
 ECHELON: System volume set to 80 percent.
-2026-08-08 02:40:56,937 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/hexgrad/Kokoro-82M/resolve/main/voices/af_heart.pt "HTTP/1.1 302 Found"
 
 ========================================
 Waiting for speech... (Ctrl+C to exit)
 Listening...
 Processing speech...
-2026-08-08 02:41:04,146 - faster_whisper - INFO - Processing audio with duration 00:02.112
-You said: Turn down the volume to 20%.
+2026-08-08 03:00:15,846 - faster_whisper - INFO - Processing audio with duration 00:01.760
+You said: Drop it to 60%.
 Routing intent...
 Intent classified as: system_control
 Executing SystemControl Handler...
-ECHELON: System volume set to 20 percent.
+ECHELON: System volume set to 60 percent.
 
 ========================================
 Waiting for speech... (Ctrl+C to exit)
 Listening...
 Processing speech...
-2026-08-08 02:41:11,205 - faster_whisper - INFO - Processing audio with duration 00:02.304
-You said: I'm gonna run up it again to 15%.
+2026-08-08 03:00:22,246 - faster_whisper - INFO - Processing audio with duration 00:02.528
+You said: Please increase the brightness to 70%.
 Routing intent...
 Intent classified as: system_control
 Executing SystemControl Handler...
-ECHELON: System volume set to 15 percent.
+ECHELON: Screen brightness set to 70 percent.
 
 ========================================
 Waiting for speech... (Ctrl+C to exit)
 Listening...
 Processing speech...
-2026-08-08 02:41:17,625 - faster_whisper - INFO - Processing audio with duration 00:02.304
-You said: I'm going to turn the system volume to 50%.
+2026-08-08 03:00:28,133 - faster_whisper - INFO - Processing audio with duration 00:02.016
+You said: Now decrease it to 30%.
+Routing intent...
+Intent classified as: system_control
+Executing SystemControl Handler...
+ECHELON: System volume set to 30 percent.
+
+========================================
+Waiting for speech... (Ctrl+C to exit)
+Listening...
+Processing speech...
+2026-08-08 03:00:36,603 - faster_whisper - INFO - Processing audio with duration 00:02.880
+You said: I meant decreased brightness to 30%.
+Routing intent...
+Intent classified as: system_control
+Executing SystemControl Handler...
+ECHELON: Screen brightness set to 30 percent.
+
+========================================
+Waiting for speech... (Ctrl+C to exit)
+Listening...
+Processing speech...
+2026-08-08 03:00:43,877 - faster_whisper - INFO - Processing audio with duration 00:02.784
+You said: Increase the volume back again to 50%.
 Routing intent...
 Intent classified as: system_control
 Executing SystemControl Handler...
@@ -47,116 +129,143 @@ ECHELON: System volume set to 50 percent.
 Waiting for speech... (Ctrl+C to exit)
 Listening...
 Processing speech...
-2026-08-08 02:41:22,765 - faster_whisper - INFO - Processing audio with duration 00:01.472
-You said: I'm going to turn this to 50%.
+2026-08-08 03:00:57,317 - faster_whisper - INFO - Processing audio with duration 00:04.288
+You said: Echelon create me a Python file called testscript.py
 Routing intent...
-Intent classified as: system_control
-Executing SystemControl Handler...
-ECHELON: System volume set to 50 percent.
+Intent classified as: file_ops
+Executing FileOps Handler...
+2026-08-08 03:00:58,265 - src.tools.file_ops.permissions - INFO - Asking user for permission: Do you want me to create the file at /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/testscript.py?
+ECHELON SECURITY: Do you want me to create the file at /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/testscript.py?
+Listening for confirmation (say 'yes' or 'no')...
+2026-08-08 03:01:12,187 - faster_whisper - INFO - Processing audio with duration 00:00.992
+Heard confirmation: 'yes.'
+2026-08-08 03:01:12,272 - src.tools.file_ops.permissions - INFO - User approved 'create' on /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/testscript.py
+ECHELON: Successfully saved text to testscript.py.
 
 ========================================
 Waiting for speech... (Ctrl+C to exit)
 Listening...
 Processing speech...
-2026-08-08 02:41:30,040 - faster_whisper - INFO - Processing audio with duration 00:02.208
-You said: The system brightness to 50%.
+2026-08-08 03:01:21,977 - faster_whisper - INFO - Processing audio with duration 00:03.360
+You said: Now write me a hello world print statement into that file.
 Routing intent...
-Intent classified as: system_control
-Executing SystemControl Handler...
-2026-08-08 02:41:31,512 - src.tools.system_control.media - ERROR - Failed to set brightness: [Errno 2] No such file or directory: 'brightnessctl'
-ECHELON: Error: Could not adjust brightness. Make sure brightnessctl is installed.
+Intent classified as: file_ops
+Executing FileOps Handler...
+2026-08-08 03:01:22,892 - src.tools.file_ops.permissions - WARNING - SECURITY: Denied 'overwrite' on /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/testscript.py (ALWAYS_DENY constraint)
+ECHELON: Security Error: Permission denied to overwrite testscript.py.
 
 ========================================
 Waiting for speech... (Ctrl+C to exit)
 Listening...
 Processing speech...
-2026-08-08 02:41:41,265 - faster_whisper - INFO - Processing audio with duration 00:01.696
-You said: Check my Ram Music.
-Routing intent...
-Intent classified as: system_control
-Executing SystemControl Handler...
-ECHELON: Unknown system operation parsed: 
-
-========================================
-Waiting for speech... (Ctrl+C to exit)
-Listening...
-Processing speech...
-2026-08-08 02:41:47,856 - faster_whisper - INFO - Processing audio with duration 00:01.920
-You said: Check my RAM usage.
-Routing intent...
-Intent classified as: system_control
-Executing SystemControl Handler...
-2026-08-08 02:41:49,204 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
-ECHELON: You're currently using 12 gigabytes of your 14 gigabytes of RAM, with about 2 gigabytes available. Your swap space is fully utilized, with only a small amount of free space remaining.
-
-========================================
-Waiting for speech... (Ctrl+C to exit)
-Listening...
-Processing speech...
-2026-08-08 02:42:06,297 - faster_whisper - INFO - Processing audio with duration 00:01.536
-You said: Can you open settings?
-Routing intent...
-Intent classified as: system_control
-Executing SystemControl Handler...
-ECHELON: Security Refusal: ECHELON is not permitted to launch the unverified application 'settings'.
-
-========================================
-Waiting for speech... (Ctrl+C to exit)
-Listening...
-Processing speech...
-2026-08-08 02:42:19,242 - faster_whisper - INFO - Processing audio with duration 00:03.072
-You said: Can you tell me what Echelon is allowed to open?
-Routing intent...
-Intent classified as: system_control
-Executing SystemControl Handler...
-ECHELON: Unknown diagnostic target: app
-
-========================================
-Waiting for speech... (Ctrl+C to exit)
-Listening...
-Processing speech...
-2026-08-08 02:42:38,994 - faster_whisper - INFO - Processing audio with duration 00:01.472
-You said: I'm going to open terminal.
-Routing intent...
-Intent classified as: system_control
-Executing SystemControl Handler...
-ECHELON: Opening terminal.
-
-========================================
-Waiting for speech... (Ctrl+C to exit)
-Listening...
-Processing speech...
-2026-08-08 02:42:46,886 - faster_whisper - INFO - Processing audio with duration 00:02.400
-You said: Can you close the current terminal tap?
-Routing intent...
-Intent classified as: system_control
-Executing SystemControl Handler...
-ECHELON: Unknown system operation parsed: 
-
-========================================
-Waiting for speech... (Ctrl+C to exit)
-Listening...
-Processing speech...
-2026-08-08 02:42:59,387 - faster_whisper - INFO - Processing audio with duration 00:01.696
-You said: Can you open Spotify?
-Routing intent...
-Intent classified as: system_control
-Executing SystemControl Handler...
-ECHELON: Security Refusal: ECHELON is not permitted to launch the unverified application 'spotify'.
-
-========================================
-Waiting for speech... (Ctrl+C to exit)
-Listening...
-Processing speech...
-2026-08-08 02:43:11,751 - faster_whisper - INFO - Processing audio with duration 00:01.376
-You said: Hi, how are you?
+2026-08-08 03:01:34,682 - faster_whisper - INFO - Processing audio with duration 00:01.760
+You said: Can you read it back to me?
 Routing intent...
 Intent classified as: general_chat
-2026-08-08 02:43:12,555 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
-ECHELON: I'm doing well, thanks. How about you?
+2026-08-08 03:01:35,689 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+ECHELON: The file testscript.py is empty. I didn't actually write to it earlier. Let me try that again. 
+
+Here's the corrected file with a "Hello World" print statement:
+```
+print("Hello, World!")
+```
 
 ========================================
 Waiting for speech... (Ctrl+C to exit)
-^C
-Exiting ECHELON.
+Listening...
+Processing speech...
+2026-08-08 03:01:57,616 - faster_whisper - INFO - Processing audio with duration 00:01.920
+You said: Can you open up the calculator?
+Routing intent...
+Intent classified as: system_control
+Executing SystemControl Handler...
+ECHELON: Opening calculator.
+
+========================================
+Waiting for speech... (Ctrl+C to exit)
+Listening...
+Processing speech...
+2026-08-08 03:02:02,992 - faster_whisper - INFO - Processing audio with duration 00:01.760
+You said: Can you close the calculator?
+Routing intent...
+Intent classified as: system_control
+Executing SystemControl Handler...
+ECHELON: Unknown system operation parsed: close_app
+
+========================================
+Waiting for speech... (Ctrl+C to exit)
+Listening...
+Processing speech...
+2026-08-08 03:02:24,092 - faster_whisper - INFO - Processing audio with duration 00:03.776
+You said: Can you read me the contents of the logs.md file?
+Routing intent...
+Intent classified as: file_ops
+Executing FileOps Handler...
+2026-08-08 03:02:24,893 - src.tools.file_ops.readers - INFO - Document logs.md exceeds 500 words. Summarizing...
+2026-08-08 03:02:26,004 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+ECHELON: Here is a concise summary of the provided document in 3-4 sentences:
+
+The ECHELON project has made significant progress, with the first five development logs detailing key milestones. The project guide was finalized, and the tech stack was audited and modified to replace expiring free-tier services with self-hosted or free alternatives. The architecture and requirements documentation were created, outlining the system's feasibility, component responsibilities, and implementation plan. The project has also implemented the core voice loop, orchestration core, and file operations tool, with automated testing verifying the correctness of these components.
+
+========================================
+Waiting for speech... (Ctrl+C to exit)
+Listening...
+Processing speech...
+2026-08-08 03:03:15,908 - faster_whisper - INFO - Processing audio with duration 00:02.880
+You said: Can you delete the test script.py file?
+Routing intent...
+Intent classified as: file_ops
+Executing FileOps Handler...
+ECHELON: Unknown file operation parsed: delete
+
+========================================
+Waiting for speech... (Ctrl+C to exit)
+Listening...
+Processing speech...
+2026-08-08 03:03:26,938 - faster_whisper - INFO - Processing audio with duration 00:02.656
+You said: How much GPU memory am I currently using?
+Routing intent...
+Intent classified as: system_control
+Executing SystemControl Handler...
+2026-08-08 03:03:27,748 - src.tools.system_control.diagnostics - INFO - Raw GPU stats: 5448 MiB, 6144 MiB, 93 %
+2026-08-08 03:03:28,368 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+ECHELON: You are using 5.4 gigabytes of your 6 gigabytes of video memory, which is 93 percent capacity.
+
+========================================
+Waiting for speech... (Ctrl+C to exit)
+Listening...
+Processing speech...
+2026-08-08 03:03:41,018 - faster_whisper - INFO - Processing audio with duration 00:01.504
+You said: Then you open the browser.
+Routing intent...
+Intent classified as: system_control
+Executing SystemControl Handler...
+ECHELON: Opening browser.
+
+========================================
+Waiting for speech... (Ctrl+C to exit)
+Listening...
+Processing speech...
+2026-08-08 03:03:47,508 - faster_whisper - INFO - Processing audio with duration 00:01.568
+Traceback (most recent call last):
+  File "/home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/src/main.py", line 184, in <module>
+    run_echelon()
+  File "/home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/src/main.py", line 139, in run_echelon
+    text = asr.transcribe(audio_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/src/voice/asr.py", line 28, in transcribe
+    text = "".join(segment.text for segment in segments)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/src/voice/asr.py", line 28, in <genexpr>
+    text = "".join(segment.text for segment in segments)
+                                               ^^^^^^^^
+  File "/home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/venv/lib/python3.12/site-packages/faster_whisper/transcribe.py", line 1190, in generate_segments
+    encoder_output = self.encode(segment)
+                     ^^^^^^^^^^^^^^^^^^^^
+  File "/home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/venv/lib/python3.12/site-packages/faster_whisper/transcribe.py", line 1400, in encode
+    return self.model.encode(features, to_cpu=to_cpu)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: CUDA failed with error out of memory
 ((venv) ) Pritish_3110:~/Personal Files/Syllabus/Projects/ECHELON$ 
+
+here what the model did was open a new window browser, like firefox was already open yet it opened a new window and then the VRAM hit its limit.

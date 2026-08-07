@@ -20,7 +20,7 @@ IMPORTANT: If the user says 'underscore', 'dash', or 'dot' in a filename, conver
 
 Return a valid JSON object matching this schema:
 {{
-  "action": "read" | "write" | "move" | "copy" | "find" | "organize",
+  "action": "read" | "write" | "move" | "copy" | "delete" | "find" | "organize",
   "source_path": "<path or filename>",
   "dest_path": "<destination path if applicable, else empty>",
   "content": "<content to write, else empty>",
@@ -73,6 +73,8 @@ Respond ONLY with the JSON object."""
                     return self.manager.move_file(source, dest)
                 elif action == "copy":
                     return self.manager.copy_file(source, dest)
+                elif action == "delete":
+                    return self.manager.delete_file(source)
                 elif action == "find":
                     return self.manager.find_file(source)
                 elif action == "organize":
