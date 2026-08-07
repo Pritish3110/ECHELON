@@ -31,6 +31,7 @@ from src.voice.tts import TTS
 from src.llm.groq import GroqLLM
 from src.agent.router import IntentRouter
 from src.tools.file_ops.handler import FileOpsHandler
+from src.tools.system_control.handler import SystemControlHandler
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logging.getLogger("phonemizer").setLevel(logging.ERROR)
@@ -91,6 +92,7 @@ def run_echelon():
         return any(w in ans for w in ["yes", "yep", "sure", "ok", "yeah", "do it"])
         
     file_handler = FileOpsHandler(ask_callback=ask_callback)
+    system_handler = SystemControlHandler()
     
     try:
         while True:
@@ -147,6 +149,9 @@ def run_echelon():
             elif route == "file_ops":
                 print("Executing FileOps Handler...")
                 response = file_handler.handle(text)
+            elif route == "system_control":
+                print("Executing SystemControl Handler...")
+                response = system_handler.handle(text)
             else:
                 response = f"Routing to {route.replace('_', ' ')}. Tool execution is coming in the next phase."
                 
