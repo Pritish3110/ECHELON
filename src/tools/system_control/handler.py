@@ -14,6 +14,8 @@ class SystemControlHandler:
     
     PARAM_PROMPT = """You are a parameter extractor for a local system operations tool. 
 Analyze the user's command and extract the necessary arguments.
+If the user uses pronouns like "it" or omits the target (e.g., "decrease it to 30"), you MUST look at the Recent Conversation Context to determine if they mean volume, brightness, or a specific app.
+
 Return a valid JSON object matching this schema:
 {{
   "action": "volume" | "brightness" | "diagnostics" | "launch_app" | "close_app" | "run_script",
