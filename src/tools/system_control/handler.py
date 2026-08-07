@@ -16,7 +16,7 @@ class SystemControlHandler:
 Analyze the user's command and extract the necessary arguments.
 Return a valid JSON object matching this schema:
 {{
-  "action": "volume" | "brightness" | "diagnostics" | "launch_app" | "run_script",
+  "action": "volume" | "brightness" | "diagnostics" | "launch_app" | "close_app" | "run_script",
   "target": "<diagnostics target (gpu/disk/ram) OR app name OR script name>",
   "value": <number for volume/brightness level, 0 if not applicable>
 }}
@@ -25,6 +25,7 @@ Examples:
 "Turn the volume up to 50" -> {{"action": "volume", "target": "", "value": 50}}
 "Check the GPU memory" -> {{"action": "diagnostics", "target": "gpu", "value": 0}}
 "Open firefox" -> {{"action": "launch_app", "target": "firefox", "value": 0}}
+"Close the calculator" -> {{"action": "close_app", "target": "calculator", "value": 0}}
 "Run the backup script" -> {{"action": "run_script", "target": "backup", "value": 0}}
 
 Recent Conversation Context (for resolving references):
@@ -77,6 +78,8 @@ Respond ONLY with the JSON object."""
                         return f"Unknown diagnostic target: {target}"
                 elif action == "launch_app":
                     return self.apps.launch_app(target)
+                elif action == "close_app":
+                    return self.apps.close_app(target)
                 elif action == "run_script":
                     return self.scripts.run_script(target)
                 elif action == "":
