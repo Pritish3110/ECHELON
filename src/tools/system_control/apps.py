@@ -21,7 +21,10 @@ class AppController:
             "calculator": "gnome-calculator",
             "gedit": "gedit",
             "files": "nautilus",
-            "explorer": "nautilus"
+            "explorer": "nautilus",
+            "settings": "gnome-control-center",
+            "system monitor": "gnome-system-monitor",
+            "spotify": "spotify"
         }
         
         target = ALLOWED_APPS.get(app_name)

@@ -76,6 +76,8 @@ Respond ONLY with the JSON object."""
                     return self.apps.launch_app(target)
                 elif action == "run_script":
                     return self.scripts.run_script(target)
+                elif action == "":
+                    return "I understood that as a system command, but I'm not sure which tool or app to use for it."
                 else:
                     return f"Unknown system operation parsed: {action}"
                     

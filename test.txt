@@ -1,157 +1,159 @@
-((venv) ) Pritish_3110:~/Personal Files/Syllabus/Projects/ECHELON$ python src/main.py
-2026-08-08 02:29:26,275 - __main__ - INFO - Initializing ECHELON models...
-2026-08-08 02:29:26,319 - src.voice.asr - INFO - Loading Faster-Whisper small (int8)...
-2026-08-08 02:29:27,246 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
-2026-08-08 02:29:28,117 - src.voice.tts - INFO - Loading Kokoro-82M TTS (lang=a, voice=af_heart)...
-WARNING: Defaulting repo_id to hexgrad/Kokoro-82M. Pass repo_id='hexgrad/Kokoro-82M' to suppress this warning.
-2026-08-08 02:29:28,524 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/hexgrad/Kokoro-82M/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
-2026-08-08 02:29:28,685 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/hexgrad/Kokoro-82M/f3ff3571791e39611d31c381e3a41a3af07b4987/config.json "HTTP/1.1 200 OK"
-/home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/venv/lib/python3.12/site-packages/torch/nn/modules/rnn.py:1011: UserWarning: dropout option adds dropout after all but last recurrent layer, so non-zero dropout expects num_layers greater than 1, but got dropout=0.2 and num_layers=1
-  super().__init__("LSTM", *args, **kwargs)
-/home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/venv/lib/python3.12/site-packages/torch/nn/utils/weight_norm.py:144: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
-  WeightNorm.apply(module, name, dim)
-2026-08-08 02:29:29,801 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/hexgrad/Kokoro-82M/resolve/main/kokoro-v1_0.pth "HTTP/1.1 302 Found"
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-2026-08-08 02:29:29,802 - huggingface_hub.utils._http - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-2026-08-08 02:29:30,944 - __main__ - INFO - Models loaded. System ready.
-
 ========================================
 Waiting for speech... (Ctrl+C to exit)
 Listening...
 Processing speech...
-2026-08-08 02:29:34,024 - faster_whisper - INFO - Processing audio with duration 00:01.888
-2026-08-08 02:29:34,346 - faster_whisper - INFO - Detected language 'fi' with probability 0.33
-You said: Echelon, havaa eikä yritetään.
-Routing intent...
-Intent classified as: general_chat
-2026-08-08 02:29:38,809 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
-ECHELON: Tunnetaan, joskus on parempi antaa mennä ja keskittyä uusiin haasteisiin. Mitä sinä olet parhaillaan haastaamassa?
-2026-08-08 02:29:39,568 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/hexgrad/Kokoro-82M/resolve/main/voices/af_heart.pt "HTTP/1.1 302 Found"
-
-========================================
-Waiting for speech... (Ctrl+C to exit)
-Listening...
-Processing speech...
-2026-08-08 02:29:53,277 - faster_whisper - INFO - Processing audio with duration 00:02.240
-2026-08-08 02:29:53,374 - faster_whisper - INFO - Detected language 'en' with probability 0.77
-You said: Hey, Echelon. How are you doing today?
-Routing intent...
-Intent classified as: general_chat
-2026-08-08 02:29:54,123 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
-ECHELON: I'm doing well, thanks for asking. Just here and ready to help with any questions you might have. How about you?
-
-========================================
-Waiting for speech... (Ctrl+C to exit)
-Listening...
-Processing speech...
-2026-08-08 02:30:04,161 - faster_whisper - INFO - Processing audio with duration 00:01.792
-2026-08-08 02:30:04,245 - faster_whisper - INFO - Detected language 'en' with probability 0.82
-You said: Tell me what is today's date.
+2026-08-08 02:40:52,137 - faster_whisper - INFO - Processing audio with duration 00:02.080
+You said: I'm going to turn up the volume to 80%.
 Routing intent...
 Intent classified as: system_control
-ECHELON: Routing to system control. Tool execution is coming in the next phase.
+Executing SystemControl Handler...
+ECHELON: System volume set to 80 percent.
+2026-08-08 02:40:56,937 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/hexgrad/Kokoro-82M/resolve/main/voices/af_heart.pt "HTTP/1.1 302 Found"
 
 ========================================
 Waiting for speech... (Ctrl+C to exit)
 Listening...
 Processing speech...
-2026-08-08 02:30:22,699 - faster_whisper - INFO - Processing audio with duration 00:03.488
-2026-08-08 02:30:22,813 - faster_whisper - INFO - Detected language 'en' with probability 0.91
-You said: Okay, can you read the context of the...
+2026-08-08 02:41:04,146 - faster_whisper - INFO - Processing audio with duration 00:02.112
+You said: Turn down the volume to 20%.
 Routing intent...
-Intent classified as: memory_recall
-ECHELON: Routing to memory recall. Tool execution is coming in the next phase.
+Intent classified as: system_control
+Executing SystemControl Handler...
+ECHELON: System volume set to 20 percent.
 
 ========================================
 Waiting for speech... (Ctrl+C to exit)
 Listening...
 Processing speech...
-2026-08-08 02:30:28,745 - faster_whisper - INFO - Processing audio with duration 00:00.576
-2026-08-08 02:30:28,818 - faster_whisper - INFO - Detected language 'en' with probability 0.64
-You said: 
-
-========================================
-Waiting for speech... (Ctrl+C to exit)
-Listening...
-Processing speech...
-2026-08-08 02:30:40,548 - faster_whisper - INFO - Processing audio with duration 00:02.336
-2026-08-08 02:30:40,620 - faster_whisper - INFO - Detected language 'en' with probability 0.64
-You said: You read the plan.md file.
+2026-08-08 02:41:11,205 - faster_whisper - INFO - Processing audio with duration 00:02.304
+You said: I'm gonna run up it again to 15%.
 Routing intent...
-Intent classified as: memory_recall
-ECHELON: Routing to memory recall. Tool execution is coming in the next phase.
+Intent classified as: system_control
+Executing SystemControl Handler...
+ECHELON: System volume set to 15 percent.
 
 ========================================
 Waiting for speech... (Ctrl+C to exit)
 Listening...
 Processing speech...
-2026-08-08 02:30:57,702 - faster_whisper - INFO - Processing audio with duration 00:03.936
-2026-08-08 02:30:57,786 - faster_whisper - INFO - Detected language 'en' with probability 0.86
-You said: I want you to create a test1.tsp file.
+2026-08-08 02:41:17,625 - faster_whisper - INFO - Processing audio with duration 00:02.304
+You said: I'm going to turn the system volume to 50%.
 Routing intent...
-Intent classified as: file_ops
-Executing FileOps Handler...
-2026-08-08 02:30:58,582 - src.tools.file_ops.permissions - INFO - Asking user for permission: Do you want me to create the file at /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/test1.tsp?
-ECHELON SECURITY: Do you want me to create the file at /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/test1.tsp?
-Listening for confirmation (say 'yes' or 'no')...
-2026-08-08 02:31:13,504 - faster_whisper - INFO - Processing audio with duration 00:00.960
-2026-08-08 02:31:13,579 - faster_whisper - INFO - Detected language 'en' with probability 0.75
-Heard confirmation: 'yes.'
-2026-08-08 02:31:13,659 - src.tools.file_ops.permissions - INFO - User approved 'create' on /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/test1.tsp
-ECHELON: Error: Unsupported file format .tsp for writing.
+Intent classified as: system_control
+Executing SystemControl Handler...
+ECHELON: System volume set to 50 percent.
 
 ========================================
 Waiting for speech... (Ctrl+C to exit)
 Listening...
 Processing speech...
-2026-08-08 02:31:27,476 - faster_whisper - INFO - Processing audio with duration 00:05.120
-2026-08-08 02:31:27,559 - faster_whisper - INFO - Detected language 'en' with probability 0.87
-You said: Can you create me a file with the name test1.txt?
+2026-08-08 02:41:22,765 - faster_whisper - INFO - Processing audio with duration 00:01.472
+You said: I'm going to turn this to 50%.
 Routing intent...
-Intent classified as: file_ops
-Executing FileOps Handler...
-2026-08-08 02:31:28,396 - src.tools.file_ops.permissions - INFO - Asking user for permission: Do you want me to create the file at /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/test1.txt?
-ECHELON SECURITY: Do you want me to create the file at /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/test1.txt?
-Listening for confirmation (say 'yes' or 'no')...
-2026-08-08 02:31:42,892 - faster_whisper - INFO - Processing audio with duration 00:00.992
-2026-08-08 02:31:42,967 - faster_whisper - INFO - Detected language 'en' with probability 0.87
-Heard confirmation: 'yes.'
-2026-08-08 02:31:43,046 - src.tools.file_ops.permissions - INFO - User approved 'create' on /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/test1.txt
-ECHELON: Successfully saved text to test1.txt.
-2026-08-08 02:31:43,059 - phonemizer - WARNING - words count mismatch on 100.0% of the lines (1/1)
+Intent classified as: system_control
+Executing SystemControl Handler...
+ECHELON: System volume set to 50 percent.
 
 ========================================
 Waiting for speech... (Ctrl+C to exit)
 Listening...
 Processing speech...
-2026-08-08 02:31:53,238 - faster_whisper - INFO - Processing audio with duration 00:05.152
-2026-08-08 02:31:53,323 - faster_whisper - INFO - Detected language 'en' with probability 0.77
-You said: Can you write some content into that file? Say hello, Prupish.
+2026-08-08 02:41:30,040 - faster_whisper - INFO - Processing audio with duration 00:02.208
+You said: The system brightness to 50%.
 Routing intent...
-Intent classified as: file_ops
-Executing FileOps Handler...
-2026-08-08 02:31:54,263 - src.tools.file_ops.permissions - INFO - Asking user for permission: Do you want me to create the file at /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/Say_hello_Prupish.md?
-ECHELON SECURITY: Do you want me to create the file at /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/Say_hello_Prupish.md?
-Listening for confirmation (say 'yes' or 'no')...
-2026-08-08 02:32:10,169 - faster_whisper - INFO - Processing audio with duration 00:00.832
-2026-08-08 02:32:10,246 - faster_whisper - INFO - Detected language 'en' with probability 0.76
-Heard confirmation: 'no.'
-2026-08-08 02:32:10,331 - src.tools.file_ops.permissions - INFO - User denied 'create' on /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/Say_hello_Prupish.md
-ECHELON: Security Error: Permission denied to create Say_hello_Prupish.md.
-2026-08-08 02:32:10,335 - phonemizer - WARNING - words count mismatch on 100.0% of the lines (1/1)
+Intent classified as: system_control
+Executing SystemControl Handler...
+2026-08-08 02:41:31,512 - src.tools.system_control.media - ERROR - Failed to set brightness: [Errno 2] No such file or directory: 'brightnessctl'
+ECHELON: Error: Could not adjust brightness. Make sure brightnessctl is installed.
 
 ========================================
 Waiting for speech... (Ctrl+C to exit)
 Listening...
 Processing speech...
-2026-08-08 02:32:23,226 - faster_whisper - INFO - Processing audio with duration 00:05.600
-2026-08-08 02:32:23,310 - faster_whisper - INFO - Detected language 'en' with probability 0.96
-You said: In the file named test1.txt I want you to write hello.picture.
+2026-08-08 02:41:41,265 - faster_whisper - INFO - Processing audio with duration 00:01.696
+You said: Check my Ram Music.
 Routing intent...
-Intent classified as: file_ops
-Executing FileOps Handler...
-2026-08-08 02:32:24,146 - src.tools.file_ops.permissions - WARNING - SECURITY: Denied 'overwrite' on /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/test1.txt (ALWAYS_DENY constraint)
-ECHELON: Security Error: Permission denied to overwrite test1.txt.
+Intent classified as: system_control
+Executing SystemControl Handler...
+ECHELON: Unknown system operation parsed: 
+
+========================================
+Waiting for speech... (Ctrl+C to exit)
+Listening...
+Processing speech...
+2026-08-08 02:41:47,856 - faster_whisper - INFO - Processing audio with duration 00:01.920
+You said: Check my RAM usage.
+Routing intent...
+Intent classified as: system_control
+Executing SystemControl Handler...
+2026-08-08 02:41:49,204 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+ECHELON: You're currently using 12 gigabytes of your 14 gigabytes of RAM, with about 2 gigabytes available. Your swap space is fully utilized, with only a small amount of free space remaining.
+
+========================================
+Waiting for speech... (Ctrl+C to exit)
+Listening...
+Processing speech...
+2026-08-08 02:42:06,297 - faster_whisper - INFO - Processing audio with duration 00:01.536
+You said: Can you open settings?
+Routing intent...
+Intent classified as: system_control
+Executing SystemControl Handler...
+ECHELON: Security Refusal: ECHELON is not permitted to launch the unverified application 'settings'.
+
+========================================
+Waiting for speech... (Ctrl+C to exit)
+Listening...
+Processing speech...
+2026-08-08 02:42:19,242 - faster_whisper - INFO - Processing audio with duration 00:03.072
+You said: Can you tell me what Echelon is allowed to open?
+Routing intent...
+Intent classified as: system_control
+Executing SystemControl Handler...
+ECHELON: Unknown diagnostic target: app
+
+========================================
+Waiting for speech... (Ctrl+C to exit)
+Listening...
+Processing speech...
+2026-08-08 02:42:38,994 - faster_whisper - INFO - Processing audio with duration 00:01.472
+You said: I'm going to open terminal.
+Routing intent...
+Intent classified as: system_control
+Executing SystemControl Handler...
+ECHELON: Opening terminal.
+
+========================================
+Waiting for speech... (Ctrl+C to exit)
+Listening...
+Processing speech...
+2026-08-08 02:42:46,886 - faster_whisper - INFO - Processing audio with duration 00:02.400
+You said: Can you close the current terminal tap?
+Routing intent...
+Intent classified as: system_control
+Executing SystemControl Handler...
+ECHELON: Unknown system operation parsed: 
+
+========================================
+Waiting for speech... (Ctrl+C to exit)
+Listening...
+Processing speech...
+2026-08-08 02:42:59,387 - faster_whisper - INFO - Processing audio with duration 00:01.696
+You said: Can you open Spotify?
+Routing intent...
+Intent classified as: system_control
+Executing SystemControl Handler...
+ECHELON: Security Refusal: ECHELON is not permitted to launch the unverified application 'spotify'.
+
+========================================
+Waiting for speech... (Ctrl+C to exit)
+Listening...
+Processing speech...
+2026-08-08 02:43:11,751 - faster_whisper - INFO - Processing audio with duration 00:01.376
+You said: Hi, how are you?
+Routing intent...
+Intent classified as: general_chat
+2026-08-08 02:43:12,555 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+ECHELON: I'm doing well, thanks. How about you?
 
 ========================================
 Waiting for speech... (Ctrl+C to exit)
