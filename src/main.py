@@ -4,6 +4,9 @@ import numpy as np
 import sys
 import queue
 import os
+import warnings
+
+warnings.filterwarnings("ignore")
 
 # Auto-inject LD_LIBRARY_PATH for CUDA 12 (required by faster-whisper/ctranslate2)
 venv_lib_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "venv", "lib", f"python{sys.version_info.major}.{sys.version_info.minor}", "site-packages")

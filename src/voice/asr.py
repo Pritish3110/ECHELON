@@ -20,6 +20,7 @@ class ASR:
         segments, info = self.model.transcribe(
             audio,
             beam_size=1,               # low latency
+            language="en",             # force English to stop static hallucinating foreign languages
             condition_on_previous_text=False, # avoid streaming drift
             initial_prompt="Hello, Echelon. Could you please help me?"
         )

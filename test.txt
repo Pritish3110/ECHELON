@@ -1,109 +1,160 @@
-hello echelon
-
-the above was written by echelon.
-
-this is the log of the main.py file while testing the complete pipeline.
-
 ((venv) ) Pritish_3110:~/Personal Files/Syllabus/Projects/ECHELON$ python src/main.py
-2026-08-08 02:18:36,720 - __main__ - INFO - Initializing ECHELON models...
-2026-08-08 02:18:36,771 - src.voice.asr - INFO - Loading Faster-Whisper small (int8)...
-2026-08-08 02:18:37,605 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
-2026-08-08 02:18:38,841 - src.voice.tts - INFO - Loading Kokoro-82M TTS (lang=a, voice=af_heart)...
+2026-08-08 02:29:26,275 - __main__ - INFO - Initializing ECHELON models...
+2026-08-08 02:29:26,319 - src.voice.asr - INFO - Loading Faster-Whisper small (int8)...
+2026-08-08 02:29:27,246 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-small/revision/main "HTTP/1.1 200 OK"
+2026-08-08 02:29:28,117 - src.voice.tts - INFO - Loading Kokoro-82M TTS (lang=a, voice=af_heart)...
 WARNING: Defaulting repo_id to hexgrad/Kokoro-82M. Pass repo_id='hexgrad/Kokoro-82M' to suppress this warning.
-2026-08-08 02:18:39,235 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/hexgrad/Kokoro-82M/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
-2026-08-08 02:18:39,395 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/hexgrad/Kokoro-82M/f3ff3571791e39611d31c381e3a41a3af07b4987/config.json "HTTP/1.1 200 OK"
+2026-08-08 02:29:28,524 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/hexgrad/Kokoro-82M/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-08-08 02:29:28,685 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/hexgrad/Kokoro-82M/f3ff3571791e39611d31c381e3a41a3af07b4987/config.json "HTTP/1.1 200 OK"
 /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/venv/lib/python3.12/site-packages/torch/nn/modules/rnn.py:1011: UserWarning: dropout option adds dropout after all but last recurrent layer, so non-zero dropout expects num_layers greater than 1, but got dropout=0.2 and num_layers=1
   super().__init__("LSTM", *args, **kwargs)
 /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/venv/lib/python3.12/site-packages/torch/nn/utils/weight_norm.py:144: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
   WeightNorm.apply(module, name, dim)
-2026-08-08 02:18:40,517 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/hexgrad/Kokoro-82M/resolve/main/kokoro-v1_0.pth "HTTP/1.1 302 Found"
+2026-08-08 02:29:29,801 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/hexgrad/Kokoro-82M/resolve/main/kokoro-v1_0.pth "HTTP/1.1 302 Found"
 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-2026-08-08 02:18:40,517 - huggingface_hub.utils._http - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-2026-08-08 02:18:41,973 - __main__ - INFO - Models loaded. System ready.
+2026-08-08 02:29:29,802 - huggingface_hub.utils._http - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-08-08 02:29:30,944 - __main__ - INFO - Models loaded. System ready.
 
 ========================================
 Waiting for speech... (Ctrl+C to exit)
 Listening...
 Processing speech...
-2026-08-08 02:18:44,311 - faster_whisper - INFO - Processing audio with duration 00:00.800
-2026-08-08 02:18:44,627 - faster_whisper - INFO - Detected language 'en' with probability 0.21
-You said: Thank you very much.
+2026-08-08 02:29:34,024 - faster_whisper - INFO - Processing audio with duration 00:01.888
+2026-08-08 02:29:34,346 - faster_whisper - INFO - Detected language 'fi' with probability 0.33
+You said: Echelon, havaa eikä yritetään.
 Routing intent...
 Intent classified as: general_chat
-2026-08-08 02:18:49,796 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
-ECHELON: You're welcome. Is there something I can help you with?
-2026-08-08 02:18:50,503 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/hexgrad/Kokoro-82M/resolve/main/voices/af_heart.pt "HTTP/1.1 302 Found"
+2026-08-08 02:29:38,809 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+ECHELON: Tunnetaan, joskus on parempi antaa mennä ja keskittyä uusiin haasteisiin. Mitä sinä olet parhaillaan haastaamassa?
+2026-08-08 02:29:39,568 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/hexgrad/Kokoro-82M/resolve/main/voices/af_heart.pt "HTTP/1.1 302 Found"
 
 ========================================
 Waiting for speech... (Ctrl+C to exit)
 Listening...
 Processing speech...
-2026-08-08 02:18:57,485 - faster_whisper - INFO - Processing audio with duration 00:00.896
-2026-08-08 02:18:57,573 - faster_whisper - INFO - Detected language 'en' with probability 0.97
-You said: Thanks.
+2026-08-08 02:29:53,277 - faster_whisper - INFO - Processing audio with duration 00:02.240
+2026-08-08 02:29:53,374 - faster_whisper - INFO - Detected language 'en' with probability 0.77
+You said: Hey, Echelon. How are you doing today?
 Routing intent...
 Intent classified as: general_chat
-2026-08-08 02:18:59,678 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
-ECHELON: You're welcome. Is there something I can help you with?
+2026-08-08 02:29:54,123 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+ECHELON: I'm doing well, thanks for asking. Just here and ready to help with any questions you might have. How about you?
 
 ========================================
 Waiting for speech... (Ctrl+C to exit)
 Listening...
 Processing speech...
-2026-08-08 02:19:05,490 - faster_whisper - INFO - Processing audio with duration 00:01.376
-2026-08-08 02:19:05,560 - faster_whisper - INFO - Detected language 'en' with probability 0.93
-You said: What is your name?
+2026-08-08 02:30:04,161 - faster_whisper - INFO - Processing audio with duration 00:01.792
+2026-08-08 02:30:04,245 - faster_whisper - INFO - Detected language 'en' with probability 0.82
+You said: Tell me what is today's date.
 Routing intent...
-Intent classified as: general_chat
-2026-08-08 02:19:07,685 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
-ECHELON: I'm an AI, so I don't have a personal name. I'm here to help answer your questions, though. How can I assist you today?
+Intent classified as: system_control
+ECHELON: Routing to system control. Tool execution is coming in the next phase.
 
 ========================================
 Waiting for speech... (Ctrl+C to exit)
 Listening...
 Processing speech...
-2026-08-08 02:19:20,592 - faster_whisper - INFO - Processing audio with duration 00:04.096
-2026-08-08 02:19:20,680 - faster_whisper - INFO - Detected language 'en' with probability 0.97
-You said: Can you tell me how quantum computing works in simple terms?
+2026-08-08 02:30:22,699 - faster_whisper - INFO - Processing audio with duration 00:03.488
+2026-08-08 02:30:22,813 - faster_whisper - INFO - Detected language 'en' with probability 0.91
+You said: Okay, can you read the context of the...
 Routing intent...
-Intent classified as: general_chat
-2026-08-08 02:19:21,678 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
-ECHELON: Quantum computing is a type of computing that uses the weird behavior of tiny particles to process info. Unlike regular computers that use "bits" (0s and 1s), quantum computers use "qubits" that can be both 0 and 1 at the same time. This lets them try many solutions to a problem simultaneously, making them super fast for certain tasks. Think of it like trying all the combinations on a lock at the same time, instead of trying one by one.
+Intent classified as: memory_recall
+ECHELON: Routing to memory recall. Tool execution is coming in the next phase.
 
 ========================================
 Waiting for speech... (Ctrl+C to exit)
 Listening...
 Processing speech...
-2026-08-08 02:20:00,586 - faster_whisper - INFO - Processing audio with duration 00:06.272
-2026-08-08 02:20:00,689 - faster_whisper - INFO - Detected language 'en' with probability 0.98
-You said: Can you read the contents of the project underscore architecture.md file in this repository?
+2026-08-08 02:30:28,745 - faster_whisper - INFO - Processing audio with duration 00:00.576
+2026-08-08 02:30:28,818 - faster_whisper - INFO - Detected language 'en' with probability 0.64
+You said: 
+
+========================================
+Waiting for speech... (Ctrl+C to exit)
+Listening...
+Processing speech...
+2026-08-08 02:30:40,548 - faster_whisper - INFO - Processing audio with duration 00:02.336
+2026-08-08 02:30:40,620 - faster_whisper - INFO - Detected language 'en' with probability 0.64
+You said: You read the plan.md file.
+Routing intent...
+Intent classified as: memory_recall
+ECHELON: Routing to memory recall. Tool execution is coming in the next phase.
+
+========================================
+Waiting for speech... (Ctrl+C to exit)
+Listening...
+Processing speech...
+2026-08-08 02:30:57,702 - faster_whisper - INFO - Processing audio with duration 00:03.936
+2026-08-08 02:30:57,786 - faster_whisper - INFO - Detected language 'en' with probability 0.86
+You said: I want you to create a test1.tsp file.
 Routing intent...
 Intent classified as: file_ops
 Executing FileOps Handler...
-ECHELON: Error: The file project underscore architecture.md does not exist.
+2026-08-08 02:30:58,582 - src.tools.file_ops.permissions - INFO - Asking user for permission: Do you want me to create the file at /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/test1.tsp?
+ECHELON SECURITY: Do you want me to create the file at /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/test1.tsp?
+Listening for confirmation (say 'yes' or 'no')...
+2026-08-08 02:31:13,504 - faster_whisper - INFO - Processing audio with duration 00:00.960
+2026-08-08 02:31:13,579 - faster_whisper - INFO - Detected language 'en' with probability 0.75
+Heard confirmation: 'yes.'
+2026-08-08 02:31:13,659 - src.tools.file_ops.permissions - INFO - User approved 'create' on /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/test1.tsp
+ECHELON: Error: Unsupported file format .tsp for writing.
 
 ========================================
 Waiting for speech... (Ctrl+C to exit)
 Listening...
 Processing speech...
-2026-08-08 02:20:25,208 - faster_whisper - INFO - Processing audio with duration 00:08.160
-2026-08-08 02:20:25,315 - faster_whisper - INFO - Detected language 'en' with probability 0.99
-You said: Can you create me a file called test.txt in the downloads folder with the content called hello echelon.
+2026-08-08 02:31:27,476 - faster_whisper - INFO - Processing audio with duration 00:05.120
+2026-08-08 02:31:27,559 - faster_whisper - INFO - Detected language 'en' with probability 0.87
+You said: Can you create me a file with the name test1.txt?
 Routing intent...
 Intent classified as: file_ops
 Executing FileOps Handler...
-2026-08-08 02:20:26,264 - src.tools.file_ops.permissions - INFO - Asking user for permission: Do you want me to create the file at /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/test.txt?
-ECHELON SECURITY: Do you want me to create the file at /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/test.txt?
-2026-08-08 02:20:26,269 - phonemizer - WARNING - words count mismatch on 100.0% of the lines (1/1)
-2026-08-08 02:20:26,270 - phonemizer - WARNING - words count mismatch on 100.0% of the lines (1/1)
-Confirm? (yes/no): yes
-2026-08-08 02:20:59,375 - src.tools.file_ops.permissions - INFO - User approved 'create' on /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/test.txt
-ECHELON: Successfully saved text to test.txt.
+2026-08-08 02:31:28,396 - src.tools.file_ops.permissions - INFO - Asking user for permission: Do you want me to create the file at /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/test1.txt?
+ECHELON SECURITY: Do you want me to create the file at /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/test1.txt?
+Listening for confirmation (say 'yes' or 'no')...
+2026-08-08 02:31:42,892 - faster_whisper - INFO - Processing audio with duration 00:00.992
+2026-08-08 02:31:42,967 - faster_whisper - INFO - Detected language 'en' with probability 0.87
+Heard confirmation: 'yes.'
+2026-08-08 02:31:43,046 - src.tools.file_ops.permissions - INFO - User approved 'create' on /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/test1.txt
+ECHELON: Successfully saved text to test1.txt.
+2026-08-08 02:31:43,059 - phonemizer - WARNING - words count mismatch on 100.0% of the lines (1/1)
+
+========================================
+Waiting for speech... (Ctrl+C to exit)
+Listening...
+Processing speech...
+2026-08-08 02:31:53,238 - faster_whisper - INFO - Processing audio with duration 00:05.152
+2026-08-08 02:31:53,323 - faster_whisper - INFO - Detected language 'en' with probability 0.77
+You said: Can you write some content into that file? Say hello, Prupish.
+Routing intent...
+Intent classified as: file_ops
+Executing FileOps Handler...
+2026-08-08 02:31:54,263 - src.tools.file_ops.permissions - INFO - Asking user for permission: Do you want me to create the file at /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/Say_hello_Prupish.md?
+ECHELON SECURITY: Do you want me to create the file at /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/Say_hello_Prupish.md?
+Listening for confirmation (say 'yes' or 'no')...
+2026-08-08 02:32:10,169 - faster_whisper - INFO - Processing audio with duration 00:00.832
+2026-08-08 02:32:10,246 - faster_whisper - INFO - Detected language 'en' with probability 0.76
+Heard confirmation: 'no.'
+2026-08-08 02:32:10,331 - src.tools.file_ops.permissions - INFO - User denied 'create' on /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/Say_hello_Prupish.md
+ECHELON: Security Error: Permission denied to create Say_hello_Prupish.md.
+2026-08-08 02:32:10,335 - phonemizer - WARNING - words count mismatch on 100.0% of the lines (1/1)
+
+========================================
+Waiting for speech... (Ctrl+C to exit)
+Listening...
+Processing speech...
+2026-08-08 02:32:23,226 - faster_whisper - INFO - Processing audio with duration 00:05.600
+2026-08-08 02:32:23,310 - faster_whisper - INFO - Detected language 'en' with probability 0.96
+You said: In the file named test1.txt I want you to write hello.picture.
+Routing intent...
+Intent classified as: file_ops
+Executing FileOps Handler...
+2026-08-08 02:32:24,146 - src.tools.file_ops.permissions - WARNING - SECURITY: Denied 'overwrite' on /home/pritish_3110/Personal Files/Syllabus/Projects/ECHELON/test1.txt (ALWAYS_DENY constraint)
+ECHELON: Security Error: Permission denied to overwrite test1.txt.
 
 ========================================
 Waiting for speech... (Ctrl+C to exit)
 ^C
 Exiting ECHELON.
-
-there are some errors that we can fix:
-in the first 2 speech i said hi and it heard thanks and such. next when i asked it read the contents it could not find it. and finally what was the phonemizer warning and can the ask permission be allowed through speech? when given the command to create something it should verify again like it did and instead of typing can it verify with voice as well? lets do this debugging for now before moving onto the next phase.
+((venv) ) Pritish_3110:~/Personal Files/Syllabus/Projects/ECHELON$ 
