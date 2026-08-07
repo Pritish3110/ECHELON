@@ -69,18 +69,18 @@ class RAGHandler:
         query_vector = self.embedder.encode(query).tolist()
         
         try:
-            search_result = self.client.search(
+            search_result = self.client.query_points(
                 collection_name=self.collection_name,
-                query_vector=query_vector,
+                query=query_vector,
                 limit=3
             )
             
-            if not search_result:
+            if not search_result.points:
                 return "I couldn't find any relevant information in your knowledge base."
                 
             # Build context string
             retrieved_texts = []
-            for hit in search_result:
+            for hit in search_result.points:
                 source = hit.payload.get('source', 'Unknown')
                 text = hit.payload.get('text', '')
                 retrieved_texts.append(f"[Source: {source}]\n{text}")
