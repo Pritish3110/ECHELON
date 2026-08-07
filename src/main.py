@@ -25,7 +25,9 @@ from src.voice.audio import AudioCapture, play_audio
 from src.voice.vad import VADFilter
 from src.voice.asr import ASR
 from src.voice.tts import TTS
-from src.llm.fallback import FallbackLLM
+from src.llm.groq import GroqLLM
+from src.agent.router import IntentRouter
+from src.tools.file_ops.handler import FileOpsHandler
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 log = logging.getLogger(__name__)
@@ -36,12 +38,26 @@ def run_echelon():
     vad = VADFilter(threshold=0.5)
     asr = ASR(model_size="small") 
     tts = TTS(lang_code='a')
-    llm = FallbackLLM()
+    llm = GroqLLM()
+    router = IntentRouter()
     
     log.info("Models loaded. System ready.")
     
     capture = AudioCapture()
     SILENCE_THRESHOLD_FRAMES = 16 # ~500ms at 30ms chunks
+    
+    def ask_callback(prompt_msg: str) -> bool:
+        """Callback to pause execution and await user confirmation."""
+        print(f"ECHELON SECURITY: {prompt_msg}")
+        waveform = tts.synthesize(prompt_msg)
+        if waveform is not None and len(waveform) > 0:
+            play_audio(waveform, samplerate=24000)
+            
+        # Fallback to CLI for MVP confirmation to ensure reliable test execution
+        ans = input("Confirm? (yes/no): ").strip().lower()
+        return ans in ["yes", "y", "sure", "ok"]
+        
+    file_handler = FileOpsHandler(ask_callback=ask_callback)
     
     try:
         while True:
@@ -87,8 +103,20 @@ def run_echelon():
             if not text:
                 continue
                 
-            # LLM
-            response = llm.generate(text, "Keep answers brief and conversational.")
+            # Route Intent
+            print("Routing intent...")
+            route = router.classify_intent(text)
+            print(f"Intent classified as: {route}")
+            
+            # Synthesize Response
+            if route == "general_chat":
+                response = llm.generate(text, "Keep answers brief and conversational.")
+            elif route == "file_ops":
+                print("Executing FileOps Handler...")
+                response = file_handler.handle(text)
+            else:
+                response = f"Routing to {route.replace('_', ' ')}. Tool execution is coming in the next phase."
+                
             print(f"ECHELON: {response}")
             
             # TTS
