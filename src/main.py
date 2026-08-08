@@ -35,6 +35,8 @@ from src.tools.system_control.handler import SystemControlHandler
 from src.memory.buffer import ConversationBuffer
 from src.tools.rag_query.handler import RAGHandler
 
+from src.tools.scraper.handler import WebSearchHandler
+
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logging.getLogger("phonemizer").setLevel(logging.ERROR)
 log = logging.getLogger(__name__)
@@ -97,6 +99,7 @@ def run_echelon():
     system_handler = SystemControlHandler()
     rag_handler = RAGHandler()
     memory_buffer = ConversationBuffer()
+    web_handler = WebSearchHandler()
     
     try:
         while True:
@@ -161,6 +164,9 @@ def run_echelon():
             elif route == "rag_query":
                 print("Executing RAG Query Handler...")
                 response = rag_handler.handle(text, context)
+            elif route == "web_query":
+                print("Executing Web Query Handler...")
+                response = web_handler.handle(text, context)
             elif route == "memory_recall":
                 print("Executing Memory Recall...")
                 sys_prompt = "You are ECHELON. The user is asking about something you discussed recently. Use the conversation history to answer concisely."
