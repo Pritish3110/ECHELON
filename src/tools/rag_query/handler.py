@@ -19,16 +19,15 @@ class RAGHandler:
         log.info("Loading SentenceTransformer for RAG (all-MiniLM-L6-v2) on CPU...")
         self.embedder = SentenceTransformer("all-MiniLM-L6-v2", device="cpu")
         
-        # Local disk deployment (no docker)
-        self.client = QdrantClient(path=self.db_path)
-        
-        # Initialize collection if missing
-        if not self.client.collection_exists(self.collection_name):
-            self.client.create_collection(
+        # Local disk deployment (no docker) - Initialize collection if missing
+        client = QdrantClient(path=self.db_path)
+        if not client.collection_exists(self.collection_name):
+            client.create_collection(
                 collection_name=self.collection_name,
                 vectors_config=VectorParams(size=384, distance=Distance.COSINE),
             )
             log.info(f"Created new Qdrant collection: {self.collection_name}")
+        client.close()
 
     def chunk_text(self, text: str, max_words: int = 150) -> list[str]:
         """Simple word-based chunker for documents."""
@@ -58,18 +57,24 @@ class RAGHandler:
                 )
             )
             
-        self.client.upsert(
-            collection_name=self.collection_name,
-            points=points
-        )
+        client = QdrantClient(path=self.db_path)
+        try:
+            client.upsert(
+                collection_name=self.collection_name,
+                points=points
+            )
+        finally:
+            client.close()
+            
         return f"Successfully ingested {source_name} ({len(chunks)} chunks)."
 
     def handle(self, query: str, context: str = "") -> str:
         """Queries the vector DB and synthesizes an answer."""
         query_vector = self.embedder.encode(query).tolist()
         
+        client = QdrantClient(path=self.db_path)
         try:
-            search_result = self.client.query_points(
+            search_result = client.query_points(
                 collection_name=self.collection_name,
                 query=query_vector,
                 limit=3
@@ -100,3 +105,5 @@ class RAGHandler:
         except Exception as e:
             log.error(f"RAG Query failed: {e}")
             return "There was an error searching the knowledge base."
+        finally:
+            client.close()
